@@ -1,4 +1,4 @@
-# hash:sha256:4f69a9368820ab2031e89de9b21408a9c0cc11aaaecb2587cf948cf31efa3f73
+# hash:sha256:7b3c92374e6ce30b7d01a213d00d78c20ee799686ae9c66d8d795ee397da3b77
 FROM registry.codeocean.com/codeocean/miniconda3:4.8.2-python3.8-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -6,6 +6,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN pip install -U --no-cache-dir \
     aiochannel==1.0.1 \
     ipywidgets==7.5.1 \
+    jupyter-core==4.6.3 \
+    jupyter-kernel-gateway==2.4.3 \
+    jupyterlab==2.2.8 \
     neo4j==4.1.1 \
     numpy==1.19.1 \
     pandas==1.1.1 \
