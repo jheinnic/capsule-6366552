@@ -9,6 +9,8 @@ pip3 install -e .
 jupyter labextension install js --no-build
 jupyter labextension enable js --no-build
 #
+cd ..
+#
 jupyter serverextension enable jupyterlab --no-build
 jupyter nbextension enable --py widgetsnbextension --sys-prefix
 #
@@ -22,5 +24,4 @@ jupyter labextension enable plotlywidget@4.10.0 --no-build
 #
 jupyter lab build --minimize=False
 #
-cd ..
 rm -rf jupyter_clickable_image_widget

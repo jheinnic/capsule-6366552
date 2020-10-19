@@ -1,4 +1,4 @@
-# hash:sha256:9e93c07782ac6d89e74d43f53992c517887c041f3db946f7f705fbba8e60f2d2
+# hash:sha256:4f69a9368820ab2031e89de9b21408a9c0cc11aaaecb2587cf948cf31efa3f73
 FROM registry.codeocean.com/codeocean/miniconda3:4.8.2-python3.8-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -10,10 +10,10 @@ RUN pip install -U --no-cache-dir \
     numpy==1.19.1 \
     pandas==1.1.1 \
     pillow==7.2.0 \
-    plotly==4.10.1 \
+    plotly==4.11.0 \
     protobuf==3.12.4 \
     scikit-image==0.17.2 \
-    scikit-learn==0.27.2 \
+    scikit-learn==0.23.2 \
     scipy==1.5.2 \
     traitlets==5.0.4 \
     uuid==1.30 \
