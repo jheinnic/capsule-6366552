@@ -4,7 +4,7 @@ set -e
 git clone https://github.com/jheinnic/jupyter_clickable_image_widget
 cd jupyter_clickable_image_widget
 #
-pip3 install -e .
+pip install -e .
 #
 jupyter labextension install js --no-build
 jupyter labextension enable js --no-build
