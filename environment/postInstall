@@ -2,8 +2,8 @@
 set -e
 
 jupyter serverextension enable jupyterlab
-jupyter nbextension enable --py widgetsnbextension --sys-prefix --no-build
-jupyter nbextension enable --py plotlywidget --sys-prefix --no-build
+jupyter nbextension enable --py widgetsnbextension --sys-prefix
+jupyter nbextension enable --py plotlywidget --sys-prefix
 
 jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
 jupyter labextension install jupyterlab-plotly@4.11.0 --no-build
