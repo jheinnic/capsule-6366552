@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 set -e
 
+jupyter serverextension enable jupyterlab --no-build
+jupyter nbextension enable --py widgetsnbextension --sys-prefix --no-build
+#
+jupyter nbextension enable --py plotlywidget --sys-prefix --no-build
+jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+jupyter labextension install jupyterlab-plotly@4.10.0 --no-build
+jupyter labextension install plotlywidget@4.10.0 --no-build
+jupyter labextension enable @jupyter-widgets/jupyterlab-manager --no-build
+jupyter labextension enable jupyterlab-plotly@4.10.0 --no-build
+jupyter labextension enable plotlywidget@4.10.0 --no-build
+#
 git clone https://github.com/jheinnic/jupyter_clickable_image_widget
 cd jupyter_clickable_image_widget
 #
@@ -10,17 +21,6 @@ jupyter labextension install js --no-build
 jupyter labextension enable js --no-build
 #
 cd ..
-#
-jupyter serverextension enable jupyterlab --no-build
-jupyter nbextension enable --py widgetsnbextension --sys-prefix
-#
-jupyter nbextension enable --py plotlywidget --sys-prefix
-jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
-jupyter labextension install jupyterlab-plotly@4.10.0 --no-build
-jupyter labextension install plotlywidget@4.10.0 --no-build
-jupyter labextension enable @jupyter-widgets/jupyterlab-manager --no-build
-jupyter labextension enable jupyterlab-plotly@4.10.0 --no-build
-jupyter labextension enable plotlywidget@4.10.0 --no-build
 #
 jupyter lab build --minimize=False
 #
