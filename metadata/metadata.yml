@@ -1,3 +1,7 @@
 metadata_version: 1
 name: Untitled Capsule Oct 12, 2020 00:09
-corresponding_contributor: {}
+description: Comparative analysis of various techniques for reducing the storage requirements relative to a raw PNG image that encode a 2D data set.
+authors:
+- name: John Heinnickel
+  affiliations:
+  - name: No Affiliation
