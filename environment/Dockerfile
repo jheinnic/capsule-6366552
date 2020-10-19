@@ -1,10 +1,16 @@
-# hash:sha256:7b3c92374e6ce30b7d01a213d00d78c20ee799686ae9c66d8d795ee397da3b77
+# hash:sha256:a0b0b665ad5f0531bf19a325a19165023e6aecc8a7025cf4a076a51aa6af68a2
 FROM registry.codeocean.com/codeocean/miniconda3:4.8.2-python3.8-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN pip install -U --no-cache-dir \
     aiochannel==1.0.1 \
+    certifi==2020.06.20 \
     ipywidgets==7.5.1 \
     jupyter-core==4.6.3 \
     jupyter-kernel-gateway==2.4.3 \
