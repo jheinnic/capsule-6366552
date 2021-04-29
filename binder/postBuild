@@ -22,7 +22,8 @@ jupyter labextension install js --no-build
 jupyter labextension enable js --no-build
 cd ..
 jupyter lab build --minimize=False
-rm -rf jupyter_clickable_image_widget
+# Do not do this, otherwise jupyter lab clean will uninstall this widget next...
+# rm -rf jupyter_clickable_image_widget
 
 # invoke build --env-name=root --no-kernel
 # invoke demofiles
