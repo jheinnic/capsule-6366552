@@ -1,0 +1,37 @@
+set -ex
+
+jupyter serverextension enable jupyterlab
+jupyter nbextension enable --py widgetsnbextension --sys-prefix
+jupyter nbextension enable --py plotlywidget --sys-prefix
+
+jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+jupyter labextension install jupyterlab-plotly@4.11.0 --no-build
+jupyter labextension install plotlywidget@4.11.0 --no-build
+
+jupyter labextension enable @jupyter-widgets/jupyterlab-manager --no-build
+jupyter labextension enable jupyterlab-plotly@4.11.0 --no-build
+jupyter labextension enable plotlywidget@4.11.0 --no-build
+
+cd ~
+git clone https://github.com/jheinnic/jupyter_clickable_image_widget
+cd jupyter_clickable_image_widget
+pip3 install -e .
+jupyter labextension install js --no-build
+jupyter labextension enable js --no-build
+cd ..
+jupyter lab build --minimize=False
+rm -rf jupyter_clickable_image_widget
+
+# invoke build --env-name=root --no-kernel
+# invoke demofiles
+# invoke talk -t demo
+# rm -rf demofiles
+# rm -rf notebooks
+# rm -rf narrative
+# rm -rf slides
+# rm demo/notebooks/Julia.ipynb
+
+# Setup a workspace
+jupyter lab clean
+jupyter lab workspaces import binder/workspace.json
+
