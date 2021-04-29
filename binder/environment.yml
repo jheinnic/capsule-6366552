@@ -3,17 +3,18 @@ channels:
 dependencies:
 # Jupyter
 - jupyterlab=2.2.8
-- nodejs=14.16.1
+- nodejs=14
 - nbconvert=5.5
 - widgetsnbextension=3.5.1
 # Python Kernel
+- python=3.7
 - aiochannel=1.0.1
 - certifi=2020.6.20
 - decorator<5,>=4.3
 - ipywidgets=7.5.1
 - jupyter-core=4.6.3
 - jupyter-kernel-gateway=2.4.3
-- neo4j=4.1.1
+- neo4j=4
 - numpy=1.19.1
 - pandas=1.1.1
 - pillow=7.2.0
@@ -26,5 +27,3 @@ dependencies:
 - uuid=1.30
 - dask=2.1
 - matplotlib=3.1
-- python=3.8
-- invoke=1.2
