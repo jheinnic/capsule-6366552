@@ -3,10 +3,10 @@ FROM registry.codeocean.com/codeocean/miniconda3:4.8.2-python3.8-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        nodejs=12.19.0-1nodesource1 \
-    && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update \
+#     && apt-get install -y --no-install-recommends \
+#         nodejs=14.16.1-1nodesource1 \
+#     && rm -rf /var/lib/apt/lists/*
 
 RUN conda install -y \
         jupyterlab==2.2.8 \
@@ -15,6 +15,7 @@ RUN conda install -y \
 RUN pip install -U --no-cache-dir \
     aiochannel==1.0.1 \
     certifi==2020.6.20 \
+    'decorator<5,>=4.3' \
     ipywidgets==7.5.1 \
     jupyter-core==4.6.3 \
     jupyter-kernel-gateway==2.4.3 \
