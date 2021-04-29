@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package pictures.luminostics.lab.research;
+
+option java_multiple_files = true;
+option java_outer_classname = "LabImages";
+option java_package = "pictures.luminostics.lab.research.model";
+
+// Encoding for SciPy's BSR Sparse Matrix format, using uint32 to trigger Protobuf varint
+message SparseBsrMatrix {
+    uint32 blockWidth = 3;
+    uint32 blockHeight = 4;
+    repeated uint32 indPtr = 6;
+    repeated uint32 indices = 8;
+    repeated uint32 data = 10;
+}
+
+message BinarySparseBsrMatrix {
+    uint32 blockWidth = 3;
+    uint32 blockHeight = 4;
+    uint32 indPtrLen = 5;
+    bytes indPtr = 6;
+    uint32 indicesLen = 7;
+    bytes indices = 8;
+    uint32 dataLen = 9;
+    bytes data = 10;
+}
+
+message SplitBsrMatrix {
+    SparseBsrMatrix lower = 1;
+    SparseBsrMatrix upper = 8;
+}
+
+message BinarySplitBsrMatrix {
+    BinarySparseBsrMatrix lower = 1;
+    BinarySparseBsrMatrix upper = 8;
+}
+
+// Encoding for 16-bit Grayscale PNG pixel data, using uint32 to trigger Protobuf varint
+message DenseFlattenedMatrix {
+    repeated uint32 data = 10;
+}
+
+// Encoding for 16-bit Grayscale PNG pixel data, using binary representation
+message BinaryDenseFlattenedMatrix {
+    uint32 dataLen = 9;
+    bytes data = 10;
+}
+
+// Content that Luminostics places within its own XMP meataata namespace
+message XmpHeaderContent {
+    string uuid = 1;
+    string dataType = 12;
+    double captureTime = 13;
+    float captureDelay = 14;
+    float exposureTime = 15;
+}
+
+message ImageSampleContainer {
+    XmpHeaderContent header = 1;
+    uint32 pixelWidth = 2;
+    uint32 pixelHeight = 3;
+    bytes digitizedBy = 8;
+    oneof flatDataMatrix {
+        DenseFlattenedMatrix densePng = 9;
+        SparseBsrMatrix sparseBsr = 10;
+	    BinaryDenseFlattenedMatrix mysqlDensePng = 11;
+	    BinarySparseBsrMatrix mysqlSparseBsr = 12;
+        SplitBsrMatrix splitBsr = 13;
+        BinarySplitBsrMatrix mysqlSplitBsr = 14;
+    }
+}
+
