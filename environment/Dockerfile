@@ -29,7 +29,7 @@ RUN pip install -U --no-cache-dir \
     scikit-image==0.17.2 \
     scikit-learn==0.23.2 \
     scipy==1.5.2 \
-    traitlets==5.0.4 \
+    traitlets==5.2.2 \
     uuid==1.30 \
     widgetsnbextension==3.5.1
 
