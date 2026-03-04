@@ -81,7 +81,8 @@ class BaseAnalysis(ABC):
 #             "frequencies": self.pixel_value_frequencies if self.pixel_value_frequencies is not None else {}
 #         })
 
-    def _compute_histogram(flat_source: np.ndarray, unique_source_sorted: Optional[np.ndarray] = None) -> (np.ndarray, np.ndarray):
+    def _compute_histogram(self, flat_source: np.ndarray, unique_source_sorted: Optional[
+        np.ndarray] = None) -> (np.ndarray, np.ndarray):
         if unique_source_sorted is None:
             unique_source_sorted = flat_source
         bin_count = len(self.unique_values)

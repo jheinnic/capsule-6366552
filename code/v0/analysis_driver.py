@@ -3,6 +3,8 @@ import tempfile
 import traceback
 from enum import Enum
 from pathlib import Path
+from typing import Optional
+
 from aiochannel import Channel
 
 from skimage.io import imread, imsave
@@ -46,7 +48,7 @@ class AnalysisDriver():
         
     def run_bootstrap_analysis(self) -> bool:
         if self._image_analysis is None or not self._additional_steps is None:
-            raise RuntimeException("Invalid state for initial bootstrap run")
+            raise Exception("Invalid state for initial bootstrap run")
         LOGGER.info("Performing initial analysis step")
         self._image_analysis.run_analysis()
 #         LOGGER.info("Reporting initial analysis measurements")
