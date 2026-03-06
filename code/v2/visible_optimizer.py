@@ -112,7 +112,11 @@ class SparseVarIntHeuristics(BaseHeuristic):
             else:
                 print("Digitize strategy was byte sparing.  No reason to attempt varint reduction")
         
-            if self.sorted_digitize_map[0] > self.unique_values[0]:
+            print(self.sorted_digitize_map)
+            print(self.unique_values)
+            smallest_unique = self.unique_values[0]
+            smallest_digitized = self.sorted_digitize_map[smallest_unique]
+            if smallest_digitized > 0:
                 print("Most common value was not the smallest value.  Normalizing the smallest value to zero may not have produced as sparse of a file as normalizing to the most common value.  Attempting to normalize to the most common value will store negative values, which may require a specific varint format to tolerate.");
                 self.varint_strategies = [
                     { "name": "sqliteu", "impl": varints.sqliteu },
@@ -429,7 +433,7 @@ class VisibleOptimizer(HasTraits):
         # Varint and Sparse variants of baseline and delta transforms need the output of those tests to
         # define themselves, so we have to defer their construction until during the analysis pass.  The
         # delta variants may not be feasible for all inputs and so may not get created at all.
-        self.varint_image_heuristcs = None
+        self.varint_image_heuristics = None
         self.sparse_image_heuristics = None
         self.sparse_varint_image_heuristics = None
         self.varint_delta_image_heuristics = None
@@ -439,7 +443,7 @@ class VisibleOptimizer(HasTraits):
     def run_analysis(self):
         self.progress_bar.value = 0
         self.image_heuristics.run_analysis()
-        self.varint_image_heuristcs = self.image_heuristics.to_varint_sparse_heuristics(True, False)
+        self.varint_image_heuristics = self.image_heuristics.to_varint_sparse_heuristics(True, False)
         self.sparse_varint_image_heuristics = self.image_heuristics.to_varint_sparse_heuristics(True, True)
         self.sparse_image_heuristics = self.image_heuristics.to_varint_sparse_heuristics(False, True)
         self.progress_bar.value = 1
@@ -462,7 +466,7 @@ class VisibleOptimizer(HasTraits):
         if not self.delta_image_heuristics is None:
             self.sparse_varint_delta_image_heuristics.run_analysis()
         self.progress_bar.value = 6
-        self.varint_image_heuristcs.run_analysis()
+        self.varint_image_heuristics.run_analysis()
         self.progress_bar.value = 7
         if not self.delta_image_heuristics is None:
             self.varint_delta_image_heuristics.run_analysis()
@@ -470,14 +474,15 @@ class VisibleOptimizer(HasTraits):
      
     def collect_widgets(self):
         retval = []
-        self.image_heuristics.run_analysis(retval)
-        self.sparse_image_heuristics.run_analysis(retval)
-        self.varint_image_heuristcs.run_analysis(retval)
-        self.sparse_varint_image_heuristics.run_analysis(retval)
+        self.image_heuristics.get_results(retval)
+        self.sparse_image_heuristics.get_results(retval)
+        self.varint_image_heuristics.get_results(retval)
+        self.sparse_varint_image_heuristics.get_results(retval)
         if not self.delta_image_heuristics is None:
-            self.delta_image_heuristics.run_analysis(retval)
-            self.sparse_delta_image_heuristics.run_analysis(retval)
-            self.varint_delta_image_heuristics.run_analysis(retval)
-            self.sparse_varint_delta_image_heuristics.run_analysis(retval)
+            self.delta_image_heuristics.get_results(retval)
+            self.sparse_delta_image_heuristics.get_results(retval)
+            self.varint_delta_image_heuristics.get_results(retval)
+            self.sparse_varint_delta_image_heuristics.get_results(retval)
         return retval
         
+
